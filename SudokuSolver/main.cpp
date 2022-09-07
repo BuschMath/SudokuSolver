@@ -94,7 +94,6 @@ void DisplayPuzzle()
 	}
 }
 
-// Broken
 void CheckColumns()
 {
 	int count2s = 0;
@@ -105,7 +104,7 @@ void CheckColumns()
 		{
 			for (int i = 0; i < 9; i++)
 			{
-				if (puzzle[i][j][k] == 2)
+				if (puzzle[i][j][k] == 2 || puzzle[i][j][k] == 1)
 				{
 					loc = i;
 					if (++count2s > 1 || puzzle[i][j][k] == 1)
@@ -118,7 +117,11 @@ void CheckColumns()
 			}
 
 			if (loc != -1)
-				UpdatePuzzle(loc, j, k + 1);//puzzle[loc][j][k] = 1;
+			{
+				UpdatePuzzle(loc, j, k + 1);
+				loc = -1;
+				count2s = 0;
+			}
 		}
 	}
 }
