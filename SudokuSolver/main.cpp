@@ -8,6 +8,9 @@ void IniPuzzle();
 void UpdatePuzzle(int x,int y,int z);
 void DisplayPuzzle();
 void CheckColumns();
+void CheckRows();
+// Need Def
+void CheckGrid();
 
 int main()
 {
@@ -20,7 +23,11 @@ int main()
 	UpdatePuzzle(3, 4, 3);
 	UpdatePuzzle(6, 3, 6);
 	UpdatePuzzle(8, 3, 4);
+	UpdatePuzzle(6, 7, 3);
+	UpdatePuzzle(8, 1, 7);
+	UpdatePuzzle(8, 2, 6);
 	CheckColumns();
+	CheckRows();
 	DisplayPuzzle();
 
 	return 0;
@@ -124,4 +131,41 @@ void CheckColumns()
 			}
 		}
 	}
+}
+
+// Should be able to combine row and column evals, same code, different order
+void CheckRows()
+{
+	int count2s = 0;
+	int loc = -1;
+	for (int k = 0; k < 9; k++)
+	{
+		for (int i = 0; i < 9; i++)
+		{
+			for (int j = 0; j < 9; j++)
+			{
+				if (puzzle[i][j][k] == 2 || puzzle[i][j][k] == 1)
+				{
+					loc = j;
+					if (++count2s > 1 || puzzle[i][j][k] == 1)
+					{
+						loc = -1;
+						count2s = 0;
+						break;
+					}
+				}
+			}
+
+			if (loc != -1)
+			{
+				UpdatePuzzle(i, loc, k + 1);
+				loc = -1;
+				count2s = 0;
+			}
+		}
+	}
+}
+
+void CheckGrid()
+{
 }
