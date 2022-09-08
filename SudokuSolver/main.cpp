@@ -9,7 +9,6 @@ void UpdatePuzzle(int x,int y,int z);
 void DisplayPuzzle();
 void CheckColumns();
 void CheckRows();
-// Need Def
 void CheckGrids();
 
 int main()
