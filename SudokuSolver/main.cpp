@@ -10,7 +10,7 @@ void DisplayPuzzle();
 void CheckColumns();
 void CheckRows();
 // Need Def
-void CheckGrid();
+void CheckGrids();
 
 int main()
 {
@@ -26,8 +26,18 @@ int main()
 	UpdatePuzzle(6, 7, 3);
 	UpdatePuzzle(8, 1, 7);
 	UpdatePuzzle(8, 2, 6);
+	UpdatePuzzle(7, 6, 5);
+	UpdatePuzzle(7, 7, 7);
+	cout << "\nPre-check:\n";
+	DisplayPuzzle();
 	CheckColumns();
+	cout << "\nColumns-check:\n";
+	DisplayPuzzle();
 	CheckRows();
+	cout << "\nRows-check:\n";
+	DisplayPuzzle();
+	CheckGrids();
+	cout << "\nGrids-check:\n";
 	DisplayPuzzle();
 
 	return 0;
@@ -166,6 +176,50 @@ void CheckRows()
 	}
 }
 
-void CheckGrid()
+void CheckGrids()
 {
+	int count2s = 0;
+	int locX = -1, locY = -1;
+	bool flag = false;
+
+	for (int m = 0; m < 3; m++)
+	{
+		for (int n = 0; n < 3; n++)
+		{
+			for (int k = 0; k < 9; k++)
+			{
+				for (int j = 0; j < 3; j++)
+				{
+					for (int i = 0; i < 3; i++)
+					{
+						if (puzzle[3 * m + i][3 * n + j][k] == 2 || puzzle[3 * m + i][3 * n + j][k] == 1)
+						{
+							locX = 3 * m + i;
+							locY = 3 * n + j;
+							if (++count2s > 1 || puzzle[3 * m + i][3 * n + j][k] == 1)
+							{
+								locX = -1;
+								locY = -1;
+								count2s = 0;
+								flag = true;
+								break;
+							}
+						}
+					}
+					if (flag)
+					{
+						flag = false;
+						break;
+					}
+				}
+				if (locX != -1 && locY != -1)
+				{
+					UpdatePuzzle(locX, locY, k + 1);
+					locX = -1;
+					locY = -1;
+					count2s = 0;
+				}
+			}
+		}
+	}
 }
