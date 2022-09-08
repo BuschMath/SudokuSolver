@@ -17,28 +17,59 @@ int main()
 	IniPuzzle();
 
 	DisplayPuzzle();
-	UpdatePuzzle(4, 2, 3);
 	UpdatePuzzle(0, 1, 8);
+	UpdatePuzzle(0, 3, 5);
 	UpdatePuzzle(0, 5, 3);
+	UpdatePuzzle(0, 8, 1);
+	UpdatePuzzle(1, 3, 7);
+	UpdatePuzzle(1, 4, 6);
+	UpdatePuzzle(1, 6, 9);
+	UpdatePuzzle(1, 8, 8);
+	UpdatePuzzle(2, 0, 2);
+	UpdatePuzzle(2, 6, 6);
+
 	UpdatePuzzle(3, 4, 3);
+	UpdatePuzzle(3, 8, 5);
+	UpdatePuzzle(4, 1, 6);
+	UpdatePuzzle(4, 2, 3);
+	UpdatePuzzle(4, 6, 1);
+	UpdatePuzzle(5, 0, 1);
+	UpdatePuzzle(5, 2, 2);
+	UpdatePuzzle(5, 3, 9);
+	UpdatePuzzle(5, 5, 6);
+
+	UpdatePuzzle(6, 0, 5);
+	UpdatePuzzle(6, 1, 2);
+	UpdatePuzzle(6, 2, 8);
 	UpdatePuzzle(6, 3, 6);
-	UpdatePuzzle(8, 3, 4);
+	UpdatePuzzle(6, 4, 1);
+	UpdatePuzzle(6, 6, 4);
 	UpdatePuzzle(6, 7, 3);
-	UpdatePuzzle(8, 1, 7);
-	UpdatePuzzle(8, 2, 6);
+	UpdatePuzzle(7, 0, 9);
 	UpdatePuzzle(7, 6, 5);
 	UpdatePuzzle(7, 7, 7);
-	cout << "\nPre-check:\n";
-	DisplayPuzzle();
-	CheckColumns();
-	cout << "\nColumns-check:\n";
-	DisplayPuzzle();
-	CheckRows();
-	cout << "\nRows-check:\n";
-	DisplayPuzzle();
-	CheckGrids();
-	cout << "\nGrids-check:\n";
-	DisplayPuzzle();
+	UpdatePuzzle(8, 1, 7);
+	UpdatePuzzle(8, 2, 6);
+	UpdatePuzzle(8, 3, 4);
+	UpdatePuzzle(8, 4, 9);
+	UpdatePuzzle(8, 5, 5);
+	UpdatePuzzle(8, 6, 8);
+	UpdatePuzzle(8, 7, 1);
+
+	for (int i = 0; i < 5; i++)
+	{
+		cout << "\nPre-check: " << i << "\n";
+		DisplayPuzzle();
+		CheckColumns();
+		cout << "\nColumns-check: " << i << "\n";
+		DisplayPuzzle();
+		CheckRows();
+		cout << "\nRows-check: " << i << "\n";
+		DisplayPuzzle();
+		CheckGrids();
+		cout << "\nGrids-check: " << i << "\n";
+		DisplayPuzzle();
+	}
 
 	return 0;
 }
